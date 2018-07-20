@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* interval between updates (in ms) */
-const unsigned int interval = 1000;
+const unsigned int interval = 2000;
 
 /* text to show if no value can be retrieved */
 static const char unknown_str[] = "n/a";
@@ -60,6 +60,15 @@ static const char unknown_str[] = "n/a";
  * wifi_essid           WiFi ESSID                      interface name (wlan0)
  */
 static const struct arg args[] = {
-	/* function format          argument */
-	{ datetime, "%s",           "%F %T" },
+	/* function        format          argument */
+	{ load_avg,        "[%s] ",        NULL },
+	{ disk_used,       "[%s ",         "/" },
+	{ ram_used,        "%s] ",         NULL },
+	{ temp,            "[%s°] ",       "/sys/class/thermal/thermal_zone0/temp" },
+	//{ vol_perc,        "[%s%] ",       "/dev/snd/pcmC0D0c" },
+	{ battery_perc,    "[%s%] ",       "BAT0" },
+	{ datetime,        "%s ",          "%a %d-%m %H:%M" },
+	{ keymap,          "%s",           NULL },
+	// last format has no space
 };
+
